@@ -99,6 +99,8 @@ group :test, :development do
  
   gem 'minitest-rails'
   gem 'minitest_tu_shim'
+  gem 'factory_girl_rails', "~>1.7.0"
+  gem "faker"
 end
 
 group :profiling do

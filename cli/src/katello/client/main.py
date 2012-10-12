@@ -43,7 +43,9 @@ from katello.client.core import (
   filters,
   gpg_key,
   system_group,
-  admin
+  admin,
+  content_view,
+  content_view_definition
 )
 
 def setup_admin(katello_cmd):
@@ -266,6 +268,11 @@ def setup_admin(katello_cmd):
         cset_cmd.add_command('apply', changeset.Apply())
         cset_cmd.add_command('promote', changeset.Promote())
         katello_cmd.add_command('changeset', cset_cmd)
+
+    if mode == 'katello':
+        cv_cmd = content_view.ContentView()
+        cv_cmd.add_command('list', content_view.List())
+        katello_cmd.add_command('content_view', cv_cmd)
 
     client_cmd = client.Client()
     client_cmd.add_command('remember', client.Remember())

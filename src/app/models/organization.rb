@@ -40,6 +40,8 @@ class Organization < ActiveRecord::Base
   has_many :permissions, :dependent => :destroy, :inverse_of => :organization
   has_many :sync_plans, :dependent => :destroy, :inverse_of => :organization
   has_many :system_groups, :dependent => :destroy, :inverse_of => :organization
+  has_many :content_view_definitions
+  has_many :content_views
 
   attr_accessor :statistics
 
