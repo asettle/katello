@@ -3,7 +3,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'minitest/autorun'
 require 'minitest/rails'
-
+require 'minitest/benchmark'
+require 'minitest/pride'
 
 class MiniTest::Rails::ActiveSupport::TestCase
   self.use_transactional_fixtures = true
@@ -29,8 +30,9 @@ def disable_glue_layers(services=[], models=[])
 
   models.each do |model|
     Object.send(:remove_const, model)
-    load "app/models/#{model.downcase}.rb"
+    load "app/models/#{model.underscore}.rb"
   end
+  FactoryGirl.reload
 end
 
 class CustomMiniTestRunner
