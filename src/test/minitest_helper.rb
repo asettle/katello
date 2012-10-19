@@ -11,6 +11,10 @@ class MiniTest::Rails::ActiveSupport::TestCase
   self.fixture_path = File.expand_path('../fixtures/models', __FILE__)
 end
 
+class Minitest::Rails::ActionController::TestCase
+  include Warden::Test::Helpers
+end
+
 def configure_vcr
   require "vcr"
 
